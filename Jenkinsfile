@@ -10,7 +10,7 @@ pipeline {
         stage('Install Newman') {
             steps {
                 sh '''
-                npm install newman-reporter-html
+                npm install newman-reporter-htmlextra
                 npm install newman
                 '''
             }
@@ -20,9 +20,10 @@ pipeline {
             steps {
                 sh '''
                     npx newman run collections/collection-requests.json \
-                        --reporters cli,junit,html \
-                        --reporter-html-export reports/newman.html \
-                        --reporter-junit-export reports/newman.xml
+                      --reporters cli,junit,htmlextra \
+                      --reporter-htmlextra-export reports/newman.html \
+                      --reporter-junit-export reports/newman.xml
+
                 '''
             }
         }
