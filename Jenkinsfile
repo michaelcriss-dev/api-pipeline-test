@@ -27,12 +27,5 @@ pipeline {
                 '''
             }
         }
-
-        stage('Archieve Reports') {
-            steps {
-                archiveArtifacts artifacts: 'reports/*.html, reports/*.xml', fingerprint: true
-                junit 'reports/newman.xml'
-            }
-        }
     }
 }
