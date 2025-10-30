@@ -16,7 +16,7 @@ pipeline {
         stage('Run API Tests') {
             steps {
                 sh '''
-                    npx newman collections/collection-requests.json \
+                    npx newman run collections/collection-requests.json \
                         --reporters cli,junit,html \
                         --reporter-html-export reports/newman.html \
                         --reporter-junit-export reports/newman.xml
