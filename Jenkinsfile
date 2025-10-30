@@ -28,16 +28,10 @@ pipeline {
             }
         }
 
-        stage('Publish HTML Report') {
+        stage('Archieve Reports') {
             steps {
-                publishHTML (target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'reports',
-                    reportFiles: 'newman.html',
-                    reportName: 'Postman API Test Report'
-                ])
+                archiveArtifacts artifacts: 'reports/*.html, reports/*.xml', fingerprint: true
+                junit 'reports/newman.xml'
             }
         }
     }
